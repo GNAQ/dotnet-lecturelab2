@@ -29,3 +29,28 @@ textarea {
         padding: 0;
     }
 }
+
+.row-layout:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.column-layout {
+    float: left;
+    width: auto;
+    /* background-color: red; */
+}
+
+.input-wider {
+    width: 100%;
+    max-width: none;
+}
+
+.input-wider-div {
+    width: 30%;
+}
+
+.grid-center {
+    margin: auto;
+}
