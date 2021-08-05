@@ -2,6 +2,8 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-image: url("bg.jpg");
+    height: 100%;
 }
 
 /* Wrapping element */
@@ -39,6 +41,7 @@ textarea {
 .column-layout {
     float: left;
     width: auto;
+    margin-right: 5px;
     /* background-color: red; */
 }
 
@@ -53,4 +56,27 @@ textarea {
 
 .grid-center {
     margin: auto;
+}
+
+.page-footer {
+    margin: 20px 0 20px 0;
+    padding-bottom: 0px;
+    position: fixed;
+    bottom: 0;
+    width: auto;
+}
+
+.body-content-wrapper {
+    /*min-height: 100%;*/
+    background-color: #ffffffdb;
+    padding: 0 25px 0 25px;
+    height: calc(100vh - 70px);
+}
+
+.search-widget-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
 }

@@ -48,6 +48,9 @@
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">主页</a></li>
                         <li><a runat="server" href="~/BookQry">图书查询</a></li>
+                        <li><a runat="server" href="~/BookChkout">图书借阅</a></li>
+                        <li><a runat="server" href="~/BookChkin">图书归还</a></li>
+                        <li><a runat="server" href="~/PersonInfo">个人信息</a></li>
                         <li><a runat="server" href="~/About">关于</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -57,15 +60,16 @@
                 </div>
             </div>
         </div>
-        <div class="container body-content">
+        <div class="container body-content body-content-wrapper">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - 图书管理系统 - GNAQ & Shadowice1984 - ASP.NET Lecture Lab 2</p>
-            </footer>
+            <div class="page-footer fixed-bottom">
+                <hr />
+                <p id="footer-authinfo">&copy; <%: DateTime.Now.Year %> - 图书管理系统 - GNAQ & Shadowice1984 - ASP.NET Lecture Lab 2</p
+            </div>
         </div>
-
+        
     </form>
 </body>
 </html>
