@@ -11,7 +11,7 @@ namespace asplab
 {
     public partial class BookQry : Page
     {
-        protected SqlConnection Con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\labw\asplab\db.mdf;Integrated Security=True;Connect Timeout=30");
+        protected SqlConnection Con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\labw\db.mdf;Integrated Security=True;Connect Timeout=30");
         protected string sql_wholetab = "SELECT * FROM [dbo].[BookTab]";
         protected DataSet ds;
         protected SqlDataAdapter da;
