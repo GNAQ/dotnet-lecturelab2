@@ -15,6 +15,7 @@ namespace asplab
         protected string sql_wholetab = "SELECT * FROM [dbo].[CheckInOutTab]";
         protected DataSet ds;
         protected SqlDataAdapter da;
+        protected SqlCommandBuilder cmdbuilder;
 
         protected void InitGV()
         {
@@ -22,9 +23,10 @@ namespace asplab
             {
                 Con.Open();
                 da = new SqlDataAdapter(sql_wholetab, Con);
+                cmdbuilder = new SqlCommandBuilder(da);
                 ds = new DataSet();
                 da.Fill(ds);
-                Con.Close();
+                // Con.Close();
 
                 GVmain_chkin.DataSource = ds;
                 GVmain_chkin.DataBind();
@@ -37,6 +39,34 @@ namespace asplab
             }
         }
 
+        protected void UpdateDB()
+        {
+            System.Diagnostics.Debug.WriteLine("!!!!!");
+
+
+
+            da.UpdateCommand = cmdbuilder.GetUpdateCommand();
+            
+            da.Update(ds.Tables[0]);
+            
+        }
+
+        protected void BindDS()
+        {
+            GVmain_chkin.DataSource = ds;
+            GVmain_chkin.DataBind();
+
+            foreach (GridViewRow rows in GVmain_chkin.Rows)
+            {
+                if (((Label)rows.FindControl("GVcol_typeLabel")).Text.Equals("2"))
+                {
+                    rows.Cells[5].Text = "已续借";
+                }
+            }
+
+            ds.Tables[0].PrimaryKey = new DataColumn[] { ds.Tables[0].Columns[0] };
+        }
+
         protected void FilterGV(string userid)
         {
             System.Diagnostics.Debug.WriteLine(userid);
@@ -45,7 +75,7 @@ namespace asplab
             try
             {
                 List<DataRow> RmIndex = new List<DataRow>();
-                fRows = ds.Tables[0].Select(qs);
+                fRows = ds.Tables[0].Select("(type = 1 OR type = 2) AND number ='" + userid +"'");
 
                 foreach (DataRow rows in ds.Tables[0].Rows)
                 {
@@ -67,8 +97,7 @@ namespace asplab
                 {
                     ds.Tables[0].Rows.Remove(rmrow);
                 }
-                GridView1.DataSource = ds;
-                GridView1.DataBind();
+                BindDS();
 
                 System.Diagnostics.Debug.WriteLine("Filter complete.");
             }
@@ -82,7 +111,7 @@ namespace asplab
         protected void Page_Init(object sender, EventArgs e)
         {
             InitGV();
-            FilterGV("");
+            FilterGV("120L022004");
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -90,9 +119,66 @@ namespace asplab
 
         }
 
+        protected void Renew(GridViewCommandEventArgs e)
+        {
+            DataRow fRow;
+            try
+            {
+                fRow = ds.Tables[0].Rows.Find(int.Parse(e.CommandArgument.ToString()));
+
+                fRow[5] = System.DateTime.Today;
+                fRow[6] = 30;
+                fRow[7] = 2;
+                
+                // System.Diagnostics.Debug.WriteLine("!!!"+ds.Tables[0].Rows[0][4].ToString());
+
+                UpdateDB();
+                BindDS();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("过滤表单时捕获到异常");
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        protected void RetBook(GridViewCommandEventArgs e)
+        {
+            DataRow fRow;
+            try
+            {
+                fRow = ds.Tables[0].Rows.Find(int.Parse(e.CommandArgument.ToString()));
+
+                fRow[5] = System.DateTime.Today;
+                fRow[6] = 0;
+                fRow[7] = 3;
+
+                // System.Diagnostics.Debug.WriteLine("!!!"+ds.Tables[0].Rows[0][4].ToString());
+
+                UpdateDB();
+                BindDS();
+
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("过滤表单时捕获到异常");
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
+        }
+
         protected void GVmain_chkin_rowcmd(object sender, GridViewCommandEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine(e.CommandName.ToString() + e.CommandArgument.ToString());
 
+            if (e.CommandName == "RenewBook")
+            {
+                Renew(e);
+            }
+            if (e.CommandName == "ReturnBook")
+            {
+                RetBook(e);
+            }
         }
     }
 }
