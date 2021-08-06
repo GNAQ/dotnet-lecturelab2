@@ -43,12 +43,9 @@ namespace asplab
         {
             System.Diagnostics.Debug.WriteLine("!!!!!");
 
-
-
             da.UpdateCommand = cmdbuilder.GetUpdateCommand();
             
             da.Update(ds.Tables[0]);
-            
         }
 
         protected void BindDS()
