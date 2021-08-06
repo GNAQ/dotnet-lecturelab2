@@ -51,7 +51,7 @@
                         <li><a runat="server" href="~/BookChkout">图书借阅</a></li>
                         <li><a runat="server" href="~/BookChkin">图书续借与归还</a></li>
                         <li><a runat="server" href="~/UserInfo">个人信息</a></li>
-                        <li><a runat="server" href="~/About">关于</a></li>
+                        <li><a runat="server" href="~/About" visible="false">关于</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right" runat="server" id="loginbar" visible="true">
                         <li><a runat="server" href="~/Login"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>

@@ -11,7 +11,7 @@ namespace asplab
     {
         protected void Page_Init(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Master Page Loaded.");
+            /* System.Diagnostics.Debug.WriteLine("Master Page Loaded.");
             System.Diagnostics.Debug.WriteLine(Request.RawUrl);
 
             if (Response.Cookies["userInfo"] != null)
@@ -27,7 +27,7 @@ namespace asplab
                 {
                     Response.Redirect("~/Login");
                 }
-            }
+            } */
         }
         
         protected void Page_Load(object sender, EventArgs e)
