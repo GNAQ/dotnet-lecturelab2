@@ -108,7 +108,7 @@ namespace asplab
         protected void Page_Init(object sender, EventArgs e)
         {
             InitGV();
-            FilterGV("120L022004");
+            FilterGV(Session["username"].ToString());
         }
 
         protected void Page_Load(object sender, EventArgs e)

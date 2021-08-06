@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+
 namespace asplab
 {
     public partial class UserInfo : System.Web.UI.Page
@@ -14,12 +15,13 @@ namespace asplab
         protected string sql_wholetab = "SELECT * FROM [dbo].[CheckInOutTab]";
         protected DataSet ds;
         protected SqlDataAdapter da;
-        protected string UserId = "0001";
+        protected string UserId = "";
         protected void Page_Init(object sender, EventArgs e)
         {
+            UserId = Session["username"].ToString();
             //try
             //{
-                Con.Open();
+            Con.Open();
                 da = new SqlDataAdapter(sql_wholetab, Con);
                 ds = new DataSet();
                 da.Fill(ds);

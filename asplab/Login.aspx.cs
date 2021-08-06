@@ -17,10 +17,12 @@ namespace asplab
         {
             string username = "";
             string userpswd = "";
-            HttpCookie reqCookies = Request.Cookies["userInfo"];
-            if (reqCookies != null)
+            
+            if (Request.Cookies.AllKeys.Contains("userInfo"))
             {
+                System.Diagnostics.Debug.WriteLine("Try Login with Cookie:");
 
+                HttpCookie reqCookies = Request.Cookies["userInfo"];
                 username = reqCookies["userID"];
                 userpswd = reqCookies["userPasswd"];
                 Login_Go(username, userpswd, true);
@@ -29,10 +31,13 @@ namespace asplab
 
         protected void AddCookie(string name, string pswd)
         {
+            System.Diagnostics.Debug.WriteLine("Add cookie" + name + " " + pswd);
+
             HttpCookie userInfo = new HttpCookie("userInfo");
             userInfo["userID"] = name;
             userInfo["userPasswd"] = pswd;
-
+            // userInfo.Secure = false;
+            // userInfo.Domain = "127.0.0.1";
             userInfo.Expires.AddDays(7);
             Response.Cookies.Add(userInfo);
 
@@ -41,6 +46,8 @@ namespace asplab
 
         protected void Login_Go(string username, string userpswd, bool isCookied)
         {
+            System.Diagnostics.Debug.WriteLine("Login Go with " + username + " " + userpswd);
+
             try
             {
                 string cmdStr = "SELECT * FROM [dbo].[UserTab] WHERE number=N'" + username + "' AND password=N'" + userpswd + "'";
@@ -61,6 +68,7 @@ namespace asplab
                     AddCookie(usernameBox.Text, pswdBox.Text);
                 }
 
+                Session["username"] = username;
                 Response.Redirect("~");
             }
             catch (Exception ex)

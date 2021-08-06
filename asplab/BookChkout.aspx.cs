@@ -76,7 +76,7 @@ namespace asplab
 
             DataRow newrow = ds.Tables[0].NewRow();
             newrow[0] = int.Parse(ds.Tables[0].Rows[ds.Tables[0].Rows.Count - 1][0].ToString()) + 1;
-            newrow[1] = "120L022004";
+            newrow[1] = Session["username"].ToString();
             newrow[2] = bookISBN;
             newrow[3] = "-";
             newrow[4] = "-";
