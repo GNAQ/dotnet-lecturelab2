@@ -14,7 +14,7 @@
             <asp:Button ID="submitBtn" runat="server" Text="提交借阅申请" CssClass="btn btn-default"/>
         </div>
         <div style="margin-bottom: 15px;">
-            <asp:Button ID="queryBtn" runat="server" Text="还不知道？跳转查询" CssClass="btn btn-default"/>
+            <asp:Button ID="queryBtn" runat="server" Text="还不知道？跳转查询" CssClass="btn btn-default" OnClick="queryBtnClicked"/>
         </div>
     </div>
 

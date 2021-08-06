@@ -127,6 +127,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Login.aspx" />
     <Content Include="BookChkout.aspx" />
+    <Content Include="BookChkin.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -224,6 +225,13 @@
     </Compile>
     <Compile Include="BookChkout.aspx.designer.cs">
       <DependentUpon>BookChkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BookChkin.aspx.cs">
+      <DependentUpon>BookChkin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BookChkin.aspx.designer.cs">
+      <DependentUpon>BookChkin.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

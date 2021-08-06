@@ -13,5 +13,10 @@ namespace asplab
         {
 
         }
+
+        protected void queryBtnClicked(object sender, EventArgs e)
+        {
+            Response.Redirect("BookQry");
+        }
     }
 }
