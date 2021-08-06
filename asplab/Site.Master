@@ -53,9 +53,13 @@
                         <li><a runat="server" href="~/UserInfo">个人信息</a></li>
                         <li><a runat="server" href="~/About">关于</a></li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right" runat="server" id="loginbar" visible="true">
                         <li><a runat="server" href="~/Login"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
                         <li><a runat="server" href="~/Login"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" runat="server" id="usernamebar" visible="false">
+                        <li><a runat="server" href="~/UserInfo">
+                            <asp:Label ID="usernameTitle" runat="server" Text="..."></asp:Label></a></li>
                     </ul>
                 </div>
             </div>

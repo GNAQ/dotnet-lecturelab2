@@ -24,7 +24,7 @@
                     <ItemTemplate>  
                         <asp:Label ID="GVcol_ISBNLabel" runat="server" Text='<%# Bind("ISBN") %>'></asp:Label>  
                     </ItemTemplate>  
-                </asp:TemplateField> 
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="书名">  
                     <ItemTemplate>  
                         <asp:Label ID="GVcol_nameLabel" runat="server" Text='<%# Bind("name") %>'></asp:Label>  
